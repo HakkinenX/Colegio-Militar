@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "173966017168",
+    "project_id": "colegiomilitargo",
+    "storage_bucket": "colegiomilitargo.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173966017168:android:affdd18843c2732c3dce15",
+        "android_client_info": {
+          "package_name": "com.seuprojeto.colegioMilitarGO"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC86YQF_gfLYVLgfnhblqaObQ-A5FqGKEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
