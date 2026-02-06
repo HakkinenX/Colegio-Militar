@@ -1,4 +1,4 @@
-package com.example.logincompose.data.local
+package com.seuprojeto.colegiomilitargo.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

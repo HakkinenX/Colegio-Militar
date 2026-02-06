@@ -1,4 +1,4 @@
-package com.example.logincompose.screens
+package com.example.colegiomilitargo.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -13,15 +13,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
-import com.example.logincompose.components.FormScreen
-import com.seuprojeto.colegioMilitarGO.R
-
+import com.example.colegiomilitargo.components.FormScreen
+import com.example.colegiomilitargo.R
 
 @Composable
 fun HomeScreen(navController: NavController) {
 
     FormScreen(
-        logoRes = R.drawable.pmlogo, // logo do topo
+        logoRes = R.drawable.pmlogo,
         logoSize = 200.dp
     ) {
         Column(
@@ -31,7 +30,6 @@ fun HomeScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
 
-            // 🔹 Primeira linha de imagens
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
@@ -50,7 +48,6 @@ fun HomeScreen(navController: NavController) {
                 )
             }
 
-            // 🔹 Segunda linha de imagens
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(24.dp)

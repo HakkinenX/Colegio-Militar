@@ -1,4 +1,4 @@
-package com.seuprojeto.colegioMilitarGO
+package com.example.colegiomilitargo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,10 +7,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.logincompose.screens.CadastrarScreen
-import com.example.logincompose.screens.HomeScreen
-import com.example.logincompose.screens.LoginScreen
 import com.google.firebase.FirebaseApp
+import com.example.colegiomilitargo.screens.LoginScreen
+import com.example.colegiomilitargo.screens.CadastrarScreen
+import com.example.colegiomilitargo.screens.HomeScreen
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

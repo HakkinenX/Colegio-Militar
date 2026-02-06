@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.9.10"
+kotlin = "1.9.22"
 compose = "2023.10.01"
 room = "2.5.2"
 firebase_bom = "32.7.1"
