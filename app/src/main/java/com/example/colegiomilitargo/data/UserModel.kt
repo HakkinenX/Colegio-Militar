@@ -1,5 +1,6 @@
-package com.example.colegiomilitargo.data.local
+package com.example.colegiomilitargo.data
 
+// ✅ CORRIGIDO: Senha removida (Firebase Auth cuida disso)
 data class UserModel(
     val id: String = "",
     val nome: String = "",

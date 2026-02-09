@@ -1,10 +1,9 @@
 package com.example.colegiomilitargo.remote
 
-import androidx.compose.runtime.remember
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.example.colegiomilitargo.data.local.UserModel
+import com.example.colegiomilitargo.data.UserModel
 import kotlinx.coroutines.tasks.await
 
 // ✅ CORRIGIDO: Repositório seguro com Firebase Authentication
@@ -13,7 +12,6 @@ class FirebaseAuthRepository {
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val usersCollection = firestore.collection("usuarios")
-
 
     // Cadastrar usuário com email e senha (seguro)
     suspend fun cadastrarUsuario(

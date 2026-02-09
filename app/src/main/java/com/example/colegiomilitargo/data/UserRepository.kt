@@ -1,9 +1,9 @@
 package com.example.colegiomilitargo.data.local
 
 import android.content.Context
-import com.example.colegiomilitargo.data.local.UserModel
-import com.seuprojeto.colegiomilitargo.data.local.AppDatabase
-import com.seuprojeto.colegiomilitargo.data.local.UserRoomEntity
+import com.example.colegiomilitargo.data.UserModel
+import com.example.colegiomilitargo.data.local.AppDatabase
+import com.example.colegiomilitargo.data.local.UserRoomEntity
 
 class UserRepository(context: Context) {
 

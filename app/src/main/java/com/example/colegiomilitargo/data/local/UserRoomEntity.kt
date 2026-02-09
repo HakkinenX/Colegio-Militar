@@ -1,8 +1,9 @@
-package com.seuprojeto.colegiomilitargo.data.local
+package com.example.colegiomilitargo.data.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+// ✅ CORRIGIDO: Senha removida
 @Entity(tableName = "usuarios")
 data class UserRoomEntity(
     @PrimaryKey(autoGenerate = true)

@@ -1,9 +1,10 @@
-package com.seuprojeto.colegiomilitargo.data.local
+package com.example.colegiomilitargo.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.colegiomilitargo.data.local.UserRoomEntity
 
 @Dao
 interface UserDao {
