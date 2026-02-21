@@ -1,19 +1,21 @@
 package com.example.colegiomilitargo.remote
 
+import com.example.colegiomilitargo.data.UserModel
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.example.colegiomilitargo.data.UserModel
 import kotlinx.coroutines.tasks.await
 
-// ✅ CORRIGIDO: Repositório seguro com Firebase Authentication
 class FirebaseAuthRepository {
 
-    private val auth = FirebaseAuth.getInstance()
-    private val firestore = FirebaseFirestore.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     private val usersCollection = firestore.collection("usuarios")
 
-    // Cadastrar usuário com email e senha (seguro)
+    // =========================
+    // CADASTRO
+    // =========================
     suspend fun cadastrarUsuario(
         nome: String,
         email: String,
@@ -21,11 +23,13 @@ class FirebaseAuthRepository {
         dataNascimento: String
     ): Result<UserModel> {
         return try {
-            // 1. Criar usuário no Firebase Auth (senha fica segura lá)
-            val authResult = auth.createUserWithEmailAndPassword(email, senha).await()
-            val firebaseUser = authResult.user ?: throw Exception("Erro ao criar usuário")
+            val authResult = auth
+                .createUserWithEmailAndPassword(email, senha)
+                .await()
 
-            // 2. Criar modelo de dados SEM senha
+            val firebaseUser = authResult.user
+                ?: throw Exception("Falha ao obter usuário autenticado")
+
             val user = UserModel(
                 id = firebaseUser.uid,
                 nome = nome,
@@ -34,62 +38,99 @@ class FirebaseAuthRepository {
                 criadoEm = System.currentTimeMillis()
             )
 
-            // 3. Salvar dados públicos no Firestore (SEM senha!)
-            usersCollection.document(firebaseUser.uid)
+            usersCollection
+                .document(firebaseUser.uid)
                 .set(user)
                 .await()
 
             Result.success(user)
+
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    // Login seguro
-    suspend fun fazerLogin(email: String, senha: String): Result<UserModel> {
-        return try {
-            // 1. Autenticar com Firebase Auth
-            val authResult = auth.signInWithEmailAndPassword(email, senha).await()
-            val firebaseUser = authResult.user ?: throw Exception("Usuário não encontrado")
+    // =========================
+    // NOVO — LINKAR CONTA (anonima → email/senha)
+    // =========================
+    suspend fun linkAccount(email: String, senha: String) {
+        val user = auth.currentUser
+            ?: throw IllegalStateException("Usuário não autenticado")
 
-            // 2. Buscar dados do usuário no Firestore
+        val credential = EmailAuthProvider.getCredential(email, senha)
+        user.linkWithCredential(credential).await()
+    }
+
+    // =========================
+    // LOGIN
+    // =========================
+    suspend fun fazerLogin(
+        email: String,
+        senha: String
+    ): Result<UserModel> {
+        return try {
+            val authResult = auth
+                .signInWithEmailAndPassword(email, senha)
+                .await()
+
+            val firebaseUser = authResult.user
+                ?: throw Exception("Usuário não autenticado")
+
             val user = getUserById(firebaseUser.uid)
-                ?: throw Exception("Dados do usuário não encontrados")
+                ?: throw Exception("Documento do usuário não encontrado")
 
             Result.success(user)
+
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
 
-    // Buscar usuário por ID
+    // =========================
+    // BUSCAR POR ID
+    // =========================
     suspend fun getUserById(userId: String): UserModel? {
         return try {
-            val doc = usersCollection.document(userId).get().await()
-            doc.toObject(UserModel::class.java)
+            val snapshot = usersCollection
+                .document(userId)
+                .get()
+                .await()
+
+            if (!snapshot.exists()) null
+            else snapshot.toObject(UserModel::class.java)
+
         } catch (e: Exception) {
             null
         }
     }
 
-    // Buscar usuário por email (somente dados públicos)
+    // =========================
+    // BUSCAR POR EMAIL
+    // =========================
     suspend fun getUserByEmail(email: String): UserModel? {
         return try {
-            val query = usersCollection.whereEqualTo("email", email).get().await()
-            query.documents.firstOrNull()?.toObject(UserModel::class.java)
+            val query = usersCollection
+                .whereEqualTo("email", email)
+                .limit(1)
+                .get()
+                .await()
+
+            query.documents.firstOrNull()
+                ?.toObject(UserModel::class.java)
+
         } catch (e: Exception) {
             null
         }
     }
 
-    // Logout
+    // =========================
+    // AUTH HELPERS
+    // =========================
     fun logout() {
         auth.signOut()
     }
 
-    // Usuário atualmente logado
     fun getCurrentUser(): FirebaseUser? = auth.currentUser
 
-    // Verificar se está logado
     fun isUserLoggedIn(): Boolean = auth.currentUser != null
 }

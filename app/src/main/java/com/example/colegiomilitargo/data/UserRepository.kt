@@ -1,4 +1,4 @@
-package com.example.colegiomilitargo.data.local
+package com.example.colegiomilitargo.data
 
 import android.content.Context
 import com.example.colegiomilitargo.data.UserModel

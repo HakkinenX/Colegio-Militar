@@ -136,7 +136,7 @@ fun CadastrarScreen(navController: NavController) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(vertical = 2.dp, horizontal = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -253,7 +253,7 @@ fun CadastrarScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 // Campo Email
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -299,7 +299,7 @@ fun CadastrarScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 // Campo Senha
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -346,7 +346,7 @@ fun CadastrarScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
                 // Campo Data de Nascimento
                 Column(modifier = Modifier.fillMaxWidth()) {

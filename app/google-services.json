@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "247649819976",
-    "project_id": "colegio-militar-go-4b7db",
-    "storage_bucket": "colegio-militar-go-4b7db.firebasestorage.app"
+    "project_number": "233539778789",
+    "project_id": "colegio-militargo",
+    "storage_bucket": "colegio-militargo.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:247649819976:android:44079df807f4af6f83277d",
+        "mobilesdk_app_id": "1:233539778789:android:d7fcc47c4dab09db8cbc0c",
         "android_client_info": {
           "package_name": "com.example.colegiomilitargo"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBpixYGlJrVlZUgqkqgJCm7uhqlhdRrJNg"
+          "current_key": "AIzaSyBnSmnIksYyFnhWU_NIvMFAUZ5pp72KquQ"
         }
       ],
       "services": {

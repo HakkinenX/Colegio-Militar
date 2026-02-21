@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.colegiomilitargo"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -46,17 +46,20 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
 
     // Compose
+    implementation(platform(libs.compose.bom))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation("androidx.compose.ui:ui:1.6.1")
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.6.1")
+    implementation("androidx.navigation:navigation-compose:2.7.6")
 
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.6")
@@ -67,7 +70,17 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
 
     // Firebase BOM
-    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+
+    // Compose UI BASE (SEM ISSO KeyboardOptions NÃO EXISTE)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+
+    // Material 3
+    implementation("androidx.compose.material3:material3")
+
+    // Activity Compose
+    implementation("androidx.activity:activity-compose:1.8.2")
 
     // Firebase Authentication
     implementation("com.google.firebase:firebase-auth-ktx")
@@ -77,4 +90,8 @@ dependencies {
 
     // Firebase Analytics (opcional)
     implementation("com.google.firebase:firebase-analytics-ktx")
+
+    // 🔥 ÍCONES (OBRIGATÓRIO)
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
 }
